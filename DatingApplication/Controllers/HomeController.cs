@@ -11,20 +11,27 @@ namespace DatingApplication.Controllers
     {
         public ActionResult Index()
         {
+            ViewBag.Title = "Home";
 
-            using(var context = new DatingContext())
-            {
-                context.Users.Add(new User
-                {
-                    Name = "Mikkel Sejersen",
-                    LoginName = "Kongen",
-                    PassCode = "GodtPassword",
-                    Birthday = DateTime.UtcNow,
-                    CreateDate = DateTime.UtcNow
-                });
 
-                context.SaveChanges();
-            }
+
+
+            #region Init EF
+            //using(var context = new DatingContext())
+            //{
+            //    context.Users.Add(new User
+            //    {
+            //        Name = "Mikkel Sejersen",
+            //        LoginName = "Kongen",
+            //        PassCode = "GodtPassword",
+            //        Birthday = DateTime.UtcNow,
+            //        CreateDate = DateTime.UtcNow
+            //    });
+
+            //    context.SaveChanges();
+            //}
+
+            #endregion Init EF
 
             return View();
         }
