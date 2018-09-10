@@ -43,7 +43,7 @@ namespace DatingApplication.Controllers
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult Profile()
         {
             ViewBag.Message = "Your contact page.";
 

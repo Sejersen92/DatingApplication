@@ -144,7 +144,7 @@
                 <div class="col-md-12">
                     <h2>Get your dating on with people you can trust.</h2>
                     <p class="pt-2 pb-2">With BoosterDatings next-level security check, you are able to find real, honest and kind people. And without the insecurities of whether or not they are who they say they are.</p>
-                    <btn type="button" class="btn btn-danger">See why YOU should use BoosterDating</btn>
+                    <btn type="button" class="btn btn-danger">@Html.ActionLink("See why YOU should use BoosterDating", "About","Home")</btn>
                 </div>
             </div>
         </div>
@@ -155,8 +155,8 @@
                 <div class="col-md-12">
                     <h6>Say hello HR@BoosterDating.com</h6>
                     <ul class="list-unstyled">
-                        <li class="list-inline-item"><a href="#"> Home</a></li>
-                        <li class="list-inline-item"><a href="#"> About us</a></li>
+                        <li class="list-inline-item"><a> @Html.ActionLink("Home", "Index", "Home")</a></li>
+                        <li class="list-inline-item"><a> @Html.ActionLink("About us", "About", "Home")</a></li>
                         <li class="list-inline-item"><a href="#"> Privacy</a></li>
                         <li class="list-inline-item"><a href="#"> Terms & Conditions</a></li>
                         <li class="list-inline-item"><a href="#"> Contact us</a></li>
