@@ -1,0 +1,32 @@
+﻿
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    @using (Html.BeginForm("Post", "Login", FormMethod.Post))
+    {
+        <div>
+            Username box
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+            Password box
+            <div class="input-group mb-3">
+                <input type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
+            </div>
+            <div>
+                <button>Login</button>
+            </div>
+        </div>
+    }
+    <br />
+    <div>
+        <button style="color:black">@Html.ActionLink("Register", "Register", "Account")</button>
+    </div>
+</body>
+</html>
