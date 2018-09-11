@@ -1,32 +1,34 @@
-﻿
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title></title>
-</head>
-<body>
-    @using (Html.BeginForm("Post", "Login", FormMethod.Post))
-    {
-        <div>
-            Username box
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
-            </div>
-            Password box
-            <div class="input-group mb-3">
-                <input type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
-            </div>
-            <div>
-                <button>Login</button>
-            </div>
-        </div>
-    }
-    <br />
+﻿@Scripts.Render("~/bundles/jquery")
+<form id="UserLogin" name="UserLogin">
     <div>
-        <button style="color:black">@Html.ActionLink("Register", "Register", "Account")</button>
+        <div class="input-group mb-3">
+            <input type="text" id="Username" name="Username" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+        </div>
+        <div class="input-group mb-3">
+            <input type="password" id="Password" name="Password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
+        </div>
+        <div>
+            <button type="submit">Login</button>
+        </div>
     </div>
-</body>
-</html>
+</form>
+
+<br />
+<div>
+    <button style="color:black">@Html.ActionLink("Register", "Register", "Account")</button>
+    <button style="color:black">@Html.ActionLink("Cancel", "Index", "Home")</button>
+</div>
+
+<script>
+    $('#UserLogin').submit(function (e) {
+        e.preventDefault();
+        $.ajax({
+            url: '/api/Login/UserLogin',
+            type: 'post',
+            data: $('#UserLogin').serialize(),
+            success: function (data) {
+                alert("Successfully Logged in!" + data);
+            }
+        });
+    });
+</script>

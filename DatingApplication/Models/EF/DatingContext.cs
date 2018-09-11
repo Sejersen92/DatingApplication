@@ -9,9 +9,9 @@ namespace DatingApplication.Models
 {
     public class DatingContext : DbContext
     {
-        public DatingContext(): base()
+        public DatingContext(): base(ConfigurationManager.AppSettings["ConnectionString"])
         {
-
+            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<DatingContext>());
         }
         public DbSet<User> Users { get; set; }
         public DbSet<Message> Messages { get; set; }

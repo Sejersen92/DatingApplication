@@ -17,19 +17,19 @@ namespace DatingApplication.Controllers
 
 
             #region Init EF
-            //using(var context = new DatingContext())
-            //{
-            //    context.Users.Add(new User
-            //    {
-            //        Name = "Mikkel Sejersen",
-            //        LoginName = "Kongen",
-            //        PassCode = "GodtPassword",
-            //        Birthday = DateTime.UtcNow,
-            //        CreateDate = DateTime.UtcNow
-            //    });
+            using (var context = new DatingContext())
+            {
+                context.Users.Add(new User
+                {
+                    Name = "Mikkel Sejersen",
+                    LoginName = "Kongen",
+                    PassCode = "GodtPassword",
+                    Birthday = DateTime.UtcNow,
+                    CreateDate = DateTime.UtcNow
+                });
 
-            //    context.SaveChanges();
-            //}
+                context.SaveChanges();
+            }
 
             #endregion Init EF
 

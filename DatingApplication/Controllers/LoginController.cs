@@ -8,38 +8,36 @@ using System.Web.Http;
 
 namespace DatingApplication.Controllers
 {
+    public class LoginRequest
+    {
+        public string Password { get; set; }
+        public string Username { get; set; }
+    }
     public class LoginController : ApiController
     {
-        // GET api/<controller>
-        public IEnumerable<string> Get()
+        [HttpPost]
+        public bool UserLogin([FromBody]LoginRequest request)
         {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET api/<controller>/5
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/<controller>
-        public void CreateUser([FromBody]Models.User value)
-        {
-            using(var ctx = new DatingContext())
+            if (request == null)
             {
-                ctx.Users.Add(new Models.User());
-                ctx.SaveChanges();
+                return false;
+            }
+            using (var ctx = new DatingContext())
+            {
+                var user = ctx.Users.FirstOrDefault(x => x.LoginName == request.Username);
+                return user.PassCode == request.Password;
             }
         }
 
-        // PUT api/<controller>/5
-        public void Put(int id, [FromBody]string value)
+        [HttpPost]
+        public void CreateUser([FromBody]Models.User value)
         {
-        }
-
-        // DELETE api/<controller>/5
-        public void Delete(int id)
-        {
+            value.CreateDate = DateTime.UtcNow;
+            using (var ctx = new DatingContext())
+            {
+                ctx.Users.Add(value);
+                ctx.SaveChanges();
+            }
         }
     }
 }

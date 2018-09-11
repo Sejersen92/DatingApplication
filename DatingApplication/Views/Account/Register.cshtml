@@ -1,45 +1,52 @@
 ﻿<meta name="viewport" content="width=device-width" />
+
+@Scripts.Render("~/bundles/jquery")
 <title></title>
 <div>
-    <form id="CreateUser">
-
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+    <div class="col-sm-6">
+        <div class="container">
+            <div class="container-fluid card box-shadow">
+                <div class="card-body">
+                    <div>
+                        <form id="CreateUser" name="CreateUser">
+                            <h2>Create a new account on an existing customer</h2>
+                            <div class="form-row">
+                                <div class="form-inline col">
+                                    <div class="input-group col-sm-8">
+                                        <input type="text" class="form-control" id="LoginName" name="LoginName" placeholder="UserName" />
+                                    </div>
+                                    <div class="input-group col-sm-8 InputMargin">
+                                        <input type="password" class="form-control" id="PassCode" name="PassCode" placeholder="Password" />
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <input type="text" id="Name" name="Name" class="form-control" placeholder="Name">
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <input type="date" id="Birthday" name="Birthday" class="form-control" placeholder="Birthday">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-inline col">
+                                    <div class="input-group col-sm InputMargin">
+                                        <button type="submit" class="btn btn-primary" name="myBtn" value="hejmor">Execute</button>
+                                        <button style="color:black">@Html.ActionLink("Cancel", "Login", "Account")</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-        //Password
-        <div class="input-group mb-3">
-            <input type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
-        </div>
-        //Confirm Password
-        <div class="input-group mb-3">
-            <input type="password" class="form-control" placeholder="Confirm Password" aria-label="ConfirmPassword" aria-describedby="basic-addon1">
-        </div>
-        //First name
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="First Name" aria-label="FirstName" aria-describedby="basic-addon1">
-        </div>
-        //Last name
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Last Name" aria-label="LastName" aria-describedby="basic-addon1">
-        </div>
-        //Birthday
-        <div class="input-group mb-3">
-            <input type="date" class="form-control" placeholder="Birthday" aria-label="Birthday" aria-describedby="basic-addon1">
-        </div>
-
-        <div>
-            <button type="submit">Create</button>
-            <button>Cancel</button>
-        </div>
-    </form>
-
+    </div>
 </div>
 
 <script>
     $('#CreateUser').submit(function (e) {
         e.preventDefault();
         $.ajax({
-            url: '/api/Login/CreateUser',
+            url: 'http://localhost:53221/api/Login/CreateUser',
             type: 'post',
             data: $('#CreateUser').serialize(),
             success: function () {
