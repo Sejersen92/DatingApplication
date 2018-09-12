@@ -3,104 +3,71 @@
     ViewBag.Title = "Profile";
 }
 
+<br />
 <div class="container-fluid">
-    <div class="row">
-        <div class="fb-profile">
-            @using (var context = new DatingContext())
-            {
-                var profiles = context.Profiles.Where(x => x.ID == 2).First();
-                <img style="width:15em; height:15em" class="rounded thumbnail" src="@profiles.Picture" alt="Profile image example" />
-                <div class="fb-profile-text">
-                    <h1>@context.Users.Where(x=>x.ID == 1).First().Name</h1>
-                </div>
-            }
+    <div class="d-flex" style="display:block">
+        <div class="row mx-auto">
+            <div class="fb-profile">
+                @using (var context = new DatingContext())
+                {
+                    var profiles = context.Profiles.Where(x => x.ID == 2).First();
+                    <img style="width:15em; height:15em" class="rounded thumbnail" src="@profiles.Picture" alt="Profile image example" />
+                    <div class="fb-profile-text">
+                        <h1>@context.Users.Where(x => x.ID == 1).First().Name</h1>
+                    </div>
+                }
+            </div>
         </div>
-    </div>
-</div>
-<div class="container-fluid">
-    <div class="col-sm-8">
-        <div data-spy="scroll" class="tabbable-panel">
-            <div class="tabbable-line">
-                <ul class="nav nav-tabs">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#tab_default_1" data-toggle="tab">
-                            About 
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#tab_default_2" data-toggle="tab">
-                            LinkedIn 
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#tab_default_3" data-toggle="tab">
-                            Facebook 
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#tab_default_4" data-toggle="tab">
-                            Instagram 
-                        </a>
-                    </li>
-                </ul>
-                <div class="tab-content">
-                    <div class="tab-pane active" id="tab_default_1">
+        <div class="container-fluid">
+            <div class="col-sm-8">
+                <div data-spy="scroll" class="tabbable-panel">
+                    <div class="tabbable-line">
+                        <ul class="nav nav-tabs">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#tab_default_1" data-toggle="tab">
+                                    About
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#tab_default_2" data-toggle="tab">
+                                    Description
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tab_default_1">
 
-                        @using (var context = new DatingContext())
-                        {
-                            var profiles = context.Profiles.Where(x => x.ID == 2).First();
-                            <h2>Profile Description</h2>
-                            <h5>
-                                @profiles.Description
-                            </h5>
-
-                            <h2>Detailed Information</h2>
-                            <ul>
-                                <li>Age: @context.Users.First().Birthday</li>
-                                <li>Gender: @profiles.Gender</li>
-                                <li>Height: @profiles.Height</li>
-                                <li>Weight: @profiles.Weight</li>
-                                <li>BodyType: @profiles.BodyType</li>
-                                <li>Hair Color: @profiles.HairColor</li>
-                                <li>Eye Color: @profiles.EyeColor</li>
-                            </ul>
-                        }
-                    </div>
-                    <div class="tab-pane" id="tab_default_2">
-                        <p>
-                            Education & Career
-                        </p>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <p>
-                                        **Implementer LinkedIn API**
-                                    </p>
-                                </div>
+                                @using (var context = new DatingContext())
+                                {
+                                    var profiles = context.Profiles.Where(x => x.ID == 2).First();
+                                    <br />
+                                    <ul>
+                                        <li>Birthday: @context.Users.First().Birthday</li>
+                                        <li>Gender: @profiles.Gender</li>
+                                        <li>Height: @profiles.Height</li>
+                                        <li>Weight: @profiles.Weight</li>
+                                        <li>BodyType: @profiles.BodyType</li>
+                                        <li>Hair Color: @profiles.HairColor</li>
+                                        <li>Eye Color: @profiles.EyeColor</li>
+                                    </ul>
+                                }
                             </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane" id="tab_default_3">
-                        <p>
-                            Family Details
-                        </p>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <p> **Look into Facebook API**</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane" id="tab_default_4">
-                        <p>
-                            Lifestyle
-                        </p>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <p> **Implement Instagram API**</p>
-                                </div>
+                            <div class="tab-pane" id="tab_default_2">
+                                @using (var context = new DatingContext())
+                                {
+                                    var profiles = context.Profiles.Where(x => x.ID == 2).First();
+                                    <br />
+                                    <h4>Who am I?</h4>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <p>
+                                                    @profiles.Description
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
                             </div>
                         </div>
                     </div>

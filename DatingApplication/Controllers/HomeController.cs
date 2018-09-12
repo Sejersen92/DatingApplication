@@ -14,9 +14,6 @@ namespace DatingApplication.Controllers
         {
             ViewBag.Title = "Home";
 
-
-
-
             #region Init EF - Brug denne kode til oprettelse af brugere
             //using (var context = new DatingContext())
             //{
@@ -61,14 +58,21 @@ namespace DatingApplication.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Your about page.";
 
             return View();
         }
 
         public ActionResult Profile()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Your profile page.";
+
+            return View();
+        }
+
+        public ActionResult Browse()
+        {
+            ViewBag.Message = "Your match browsing page.";
 
             return View();
         }
