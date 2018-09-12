@@ -12,27 +12,22 @@ namespace DatingApplication.Controllers
         public ActionResult Index()
         {
             ViewBag.Title = "Home";
-
-
-
-
             #region Init EF
-            using (var context = new DatingContext())
-            {
-                context.Users.Add(new User
-                {
-                    Name = "Mikkel Sejersen",
-                    LoginName = "Kongen",
-                    PassCode = "GodtPassword",
-                    Birthday = DateTime.UtcNow,
-                    CreateDate = DateTime.UtcNow
-                });
+            //using (var context = new DatingContext())
+            //{
+            //    context.Users.Add(new User
+            //    {
+            //        Name = "Mikkel Sejersen",
+            //        LoginName = "Kongen",
+            //        PassCode = "GodtPassword",
+            //        Birthday = DateTime.UtcNow,
+            //        CreateDate = DateTime.UtcNow
+            //    });
 
-                context.SaveChanges();
-            }
+            //    context.SaveChanges();
+            //}
 
             #endregion Init EF
-
             return View();
         }
 
@@ -42,12 +37,26 @@ namespace DatingApplication.Controllers
 
             return View();
         }
-
-        public ActionResult Profile()
+        public new ActionResult Profile()
         {
-            ViewBag.Message = "Your contact page.";
+            var usr = Request.Cookies["Username"]?.Value;
+            var pw = Request.Cookies["Password"]?.Value;
+                if (pw != null && usr != null)
+                {
+                    var login = new LoginRequest()
+                    {
+                        Password = pw,
+                        Username = usr
+                    };
+                    if (UserValidation.Verify(login))
+                    {
+                        ViewBag.Message = "Your contact page.";
 
-            return View();
+                        return View();
+                    }
+                }
+            return RedirectToAction("Login", "Account");
+
         }
     }
 }

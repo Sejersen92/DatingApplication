@@ -13,12 +13,13 @@ namespace DatingApplication.Controllers
         public string Password { get; set; }
         public string Username { get; set; }
     }
-    public class LoginController : ApiController
+
+    public static class UserValidation
     {
-        [HttpPost]
-        public bool UserLogin([FromBody]LoginRequest request)
+        public static bool Verify(LoginRequest request)
         {
-            if (request == null)
+
+        if (request == null)
             {
                 return false;
             }
@@ -27,6 +28,15 @@ namespace DatingApplication.Controllers
                 var user = ctx.Users.FirstOrDefault(x => x.LoginName == request.Username);
                 return user.PassCode == request.Password;
             }
+            
+        }
+}
+    public class LoginController : ApiController
+    {
+        [HttpPost]
+        public bool UserLogin([FromBody]LoginRequest request)
+        {
+            return UserValidation.Verify(request);
         }
 
         [HttpPost]

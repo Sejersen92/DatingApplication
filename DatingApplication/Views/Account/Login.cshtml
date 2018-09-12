@@ -21,13 +21,19 @@
 
 <script>
     $('#UserLogin').submit(function (e) {
+        var credentials = $('#UserLogin').serialize();
         e.preventDefault();
         $.ajax({
             url: '/api/Login/UserLogin',
             type: 'post',
-            data: $('#UserLogin').serialize(),
+            data: credentials,
             success: function (data) {
-                alert("Successfully Logged in!" + data);
+                if (data) {
+                    alert("Successfully Logged in!");
+                    var pair = credentials.split("&");
+                    document.cookie = "username=" + pair[0].split("=")[1] + ";path=/";
+                    document.cookie = "password=" + pair[1].split("=")[1] + ";path=/";
+                }
             }
         });
     });
