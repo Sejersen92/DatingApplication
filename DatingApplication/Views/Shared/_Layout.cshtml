@@ -17,6 +17,7 @@
                 <li class="nav-item">@Html.ActionLink("Browse", "Browse", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                 <li class="nav-item">@Html.ActionLink("Profile", "Profile", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                 <li class="nav-item">@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                @Html.Partial("LoginPartial")
             </ul>
         </nav>
     </div>
