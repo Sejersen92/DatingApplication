@@ -1,9 +1,4 @@
 ﻿using DatingApplication.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Threading;
 using System.Web.Mvc;
 
 namespace DatingApplication.Controllers
