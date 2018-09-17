@@ -1,17 +1,23 @@
-﻿@if (true)
+﻿@using DatingApplication.Controllers
+@if (UserValidation.GetLogin(Request) != null)
 {
     <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Manage", "Manage", "Account", routeValues: null, htmlAttributes: new { id = "ManageLink" })</li>
-        <li>@Html.ActionLink("Log Out", "LogOut", "Account", routeValues: null, htmlAttributes: new { id = "LogOutLink" })</li>
+        <li>@Html.ActionLink("Manage", "Manage", "Login", routeValues: null, htmlAttributes: new { id = "ManageAccount" })</li>
+        <li onclick="DeleteCookie()">@Html.ActionLink("Log Out", "Logout", "Home", routeValues: null, htmlAttributes: new { id = "LogOut" })</li>
     </ul>
 }
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        <li>@Html.ActionLink("Register", "Register", "Home", routeValues: null, htmlAttributes: new { id = "Register" })</li>
+        <li>@Html.ActionLink("Log in", "LogIn", "Home", routeValues: null, htmlAttributes: new { id = "LogIn" })</li>
     </ul>
 }
 
 
-
+<script>
+    function DeleteCookie() {
+        document.cookie = "username=; Expires=Thu, 18 Dec 2013 12:00:00 UTC; Path=/";
+        document.cookie = "password=; Expires=Thu, 18 Dec 2013 12:00:00 UTC; Path=/";
+    }
+</script>
