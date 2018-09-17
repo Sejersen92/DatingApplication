@@ -1,0 +1,40 @@
+﻿@Scripts.Render("~/bundles/jquery")
+<form id="UserLogin" name="UserLogin">
+    <div>
+        <div class="input-group mb-3">
+            <input type="text" id="Username" name="Username" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+        </div>
+        <div class="input-group mb-3">
+            <input type="password" id="Password" name="Password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
+        </div>
+        <div>
+            <button type="submit">Login</button>
+        </div>
+    </div>
+</form>
+
+<br />
+<div>
+    <button style="color:black">@Html.ActionLink("Register", "Register", "Account")</button>
+    <button style="color:black">@Html.ActionLink("Cancel", "Index", "Home")</button>
+</div>
+
+<script>
+    $('#UserLogin').submit(function (e) {
+        var credentials = $('#UserLogin').serialize();
+        e.preventDefault();
+        $.ajax({
+            url: '/api/Login/UserLogin',
+            type: 'post',
+            data: credentials,
+            success: function (data) {
+                if (data) {
+                    alert("Successfully Logged in!");
+                    var pair = credentials.split("&");
+                    document.cookie = "username=" + pair[0].split("=")[1] + ";path=/";
+                    document.cookie = "password=" + pair[1].split("=")[1] + ";path=/";
+                }
+            }
+        });
+    });
+</script>

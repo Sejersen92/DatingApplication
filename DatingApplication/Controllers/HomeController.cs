@@ -1,7 +1,6 @@
 ﻿using DatingApplication.Models;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -13,68 +12,51 @@ namespace DatingApplication.Controllers
         public ActionResult Index()
         {
             ViewBag.Title = "Home";
-
-            #region Init EF - Brug denne kode til oprettelse af brugere
+            #region Init EF
             //using (var context = new DatingContext())
             //{
             //    context.Users.Add(new User
             //    {
-            //        Name = "Camilla Hansen",
-            //        LoginName = "YogaGal93",
+            //        Name = "Mikkel Sejersen",
+            //        LoginName = "Kongen",
             //        PassCode = "GodtPassword",
-            //        Birthday = DateTime.ParseExact("1993-12-01", "yyyy-MM-dd", CultureInfo.CurrentCulture),
+            //        Birthday = DateTime.UtcNow,
             //        CreateDate = DateTime.UtcNow
             //    });
 
             //    context.SaveChanges();
             //}
 
-
-
-            //using (var context = new DatingContext())
-            //{
-            //    context.Profiles.Add(new Profile
-            //    {
-            //        ID = 5,
-            //        Picture = "https://i.kinja-img.com/gawker-media/image/upload/s--94JUxrpM--/c_scale,f_auto,fl_progressive,q_80,w_800/zjeabjityzca61on7izk.jpg",
-            //        Description = "25 år gammel. Elsker sport, fitness og hyggelige stunder på sofaen.",
-            //        User = context.Users.Where(x => x.ID == 5).First(),
-            //        Height = 184,
-            //        Weight = 68,
-            //        Gender = "Female",
-            //        BodyType = "Trained",
-            //        HairColor = "Red",
-            //        EyeColor = "Brown"
-            //    });
-
-            //    context.SaveChanges();
-            //}
-
-
             #endregion Init EF
-
             return View();
         }
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your about page.";
+            ViewBag.Message = "Your application description page.";
 
             return View();
         }
-
-        public ActionResult Profile()
+        public new ActionResult Profile()
         {
-            ViewBag.Message = "Your profile page.";
+            var usr = Request.Cookies["Username"]?.Value;
+            var pw = Request.Cookies["Password"]?.Value;
+                if (pw != null && usr != null)
+                {
+                    var login = new LoginRequest()
+                    {
+                        Password = pw,
+                        Username = usr
+                    };
+                    if (UserValidation.Verify(login))
+                    {
+                        ViewBag.Message = "Your contact page.";
 
-            return View();
-        }
+                        return View();
+                    }
+                }
+            return RedirectToAction("Login", "Account");
 
-        public ActionResult Browse()
-        {
-            ViewBag.Message = "Your match browsing page.";
-
-            return View();
         }
     }
 }
