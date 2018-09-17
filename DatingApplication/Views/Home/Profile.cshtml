@@ -2,77 +2,77 @@
 @{
     ViewBag.Title = "Profile";
 }
-
-<br />
-<div class="container-fluid">
-    <div class="d-flex" style="display:block">
-        <div class="row mx-auto">
-            <div class="fb-profile">
-                @using (var context = new DatingContext())
-                {
-                    var profiles = context.Profiles.Where(x => x.ID == 2).First();
-                    <img style="width:15em; height:15em" class="rounded thumbnail" src="@profiles.Picture" alt="Profile image example" />
-                    <div class="fb-profile-text">
-                        <h1>@context.Users.Where(x => x.ID == 1).First().Name</h1>
-                    </div>
-                }
-            </div>
-        </div>
+@using (var context = new DatingContext())
+{
+    var user = UserValidation.GetUser(UserValidation.GetLogin(Request));
+    var profiles = context.Profiles.Where(x => x.User.ID == user.ID).FirstOrDefault();
+    if (profiles == null)
+    {
+        <h3>No profile found, please create a profile now.</h3>
+        <a class="btn btn-primary" href="~/Home/ProfileInfo" role="button">Create Profile.</a>
+    }
+    else
+    {
+        <br />
         <div class="container-fluid">
-            <div class="col-sm-8">
-                <div data-spy="scroll" class="tabbable-panel">
-                    <div class="tabbable-line">
-                        <ul class="nav nav-tabs">
-                            <li class="nav-item">
-                                <a class="nav-link active" href="#tab_default_1" data-toggle="tab">
-                                    About
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#tab_default_2" data-toggle="tab">
-                                    Description
-                                </a>
-                            </li>
-                        </ul>
-                        <div class="tab-content">
-                            <div class="tab-pane active" id="tab_default_1">
-
-                                @using (var context = new DatingContext())
-                                {
-                                    var profiles = context.Profiles.Where(x => x.ID == 2).First();
-                                    <br />
-                                    <ul>
-                                        <li>Birthday: @context.Users.First().Birthday</li>
-                                        <li>Gender: @profiles.Gender</li>
-                                        <li>Height: @profiles.Height</li>
-                                        <li>Weight: @profiles.Weight</li>
-                                        <li>BodyType: @profiles.BodyType</li>
-                                        <li>Hair Color: @profiles.HairColor</li>
-                                        <li>Eye Color: @profiles.EyeColor</li>
-                                    </ul>
-                                }
-                            </div>
-                            <div class="tab-pane" id="tab_default_2">
-                                @using (var context = new DatingContext())
-                                {
-                                    var profiles = context.Profiles.Where(x => x.ID == 2).First();
-                                    <br />
-                                    <h4>Who am I?</h4>
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <p>
-                                                    @profiles.Description
-                                                </p>
+            <div class="d-flex" style="display:block">
+                <div class="row mx-auto">
+                    <div class="fb-profile">
+                        <img style="width:15em; height:15em" class="rounded thumbnail" src="@profiles.Picture" alt="Profile image example" />
+                        <div class="fb-profile-text">
+                            <h1>@context.Users.Where(x => x.ID == UserValidation.GetUser(UserValidation.GetLogin(Request)).ID).FirstOrDefault().Name</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-fluid">
+                    <div class="col-sm-8">
+                        <div data-spy="scroll" class="tabbable-panel">
+                            <div class="tabbable-line">
+                                <ul class="nav nav-tabs">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" href="#tab_default_1" data-toggle="tab">
+                                            About
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#tab_default_2" data-toggle="tab">
+                                            Description
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="tab_default_1">
+                                        <br />
+                                        <ul>
+                                            <li>Birthday: @context.Users.First().Birthday</li>
+                                            <li>Gender: @profiles.Gender</li>
+                                            <li>Height: @profiles.Height</li>
+                                            <li>Weight: @profiles.Weight</li>
+                                            <li>BodyType: @profiles.BodyType</li>
+                                            <li>Hair Color: @profiles.HairColor</li>
+                                            <li>Eye Color: @profiles.EyeColor</li>
+                                        </ul>
+                                    </div>
+                                    <div class="tab-pane" id="tab_default_2">
+                                        <br />
+                                        <h4>Who am I?</h4>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <p>
+                                                        @profiles.Description
+                                                    </p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                }
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
+    }
+}
+

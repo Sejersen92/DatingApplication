@@ -16,13 +16,16 @@ namespace DatingApplication.Controllers
             #region Init EF
             //using (var context = new DatingContext())
             //{
-            //    context.Users.Add(new User
+            //    context.Users.Add(new Profile
             //    {
-            //        Name = "Mikkel Sejersen",
-            //        LoginName = "Kongen",
-            //        PassCode = "GodtPassword",
-            //        Birthday = DateTime.UtcNow,
-            //        CreateDate = DateTime.UtcNow
+            //        Picture = "",
+            //        Description = "",
+            //        Height = 166,
+            //        Weight = 72,
+            //        Gender = "",
+            //        BodyType = "",
+            //        HairColor = "",
+            //        EyeColor = ""
             //    });
 
             //    context.SaveChanges();
@@ -53,7 +56,6 @@ namespace DatingApplication.Controllers
 
         public ActionResult LogOut()
         {
-            Thread.Sleep(5000);
             return RedirectToAction("Index","Home");
         }
         public ActionResult Login()
@@ -66,6 +68,10 @@ namespace DatingApplication.Controllers
         {
             ViewBag.Message = "Register.";
 
+            return View();
+        }
+        public ActionResult ProfileInfo()
+        {
             return View();
         }
     }
