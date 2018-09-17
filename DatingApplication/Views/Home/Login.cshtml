@@ -15,12 +15,12 @@
 
 <br />
 <div>
-    <button style="color:black">@Html.ActionLink("Register", "Register", "Account")</button>
+    <button style="color:black">@Html.ActionLink("Register", "Register", "Home")</button>
     <button style="color:black">@Html.ActionLink("Cancel", "Index", "Home")</button>
 </div>
 
 <script>
-    $('#UserLogin').submit(function (e) {
+    $('#UserLogin').submit(function(e) {
         var credentials = $('#UserLogin').serialize();
         e.preventDefault();
         $.ajax({
@@ -33,6 +33,7 @@
                     var pair = credentials.split("&");
                     document.cookie = "username=" + pair[0].split("=")[1] + ";path=/";
                     document.cookie = "password=" + pair[1].split("=")[1] + ";path=/";
+                    location.reload();
                 }
             }
         });

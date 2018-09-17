@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Threading;
 using System.Web.Mvc;
 
 namespace DatingApplication.Controllers
@@ -39,24 +40,33 @@ namespace DatingApplication.Controllers
         }
         public new ActionResult Profile()
         {
-            var usr = Request.Cookies["Username"]?.Value;
-            var pw = Request.Cookies["Password"]?.Value;
-                if (pw != null && usr != null)
-                {
-                    var login = new LoginRequest()
-                    {
-                        Password = pw,
-                        Username = usr
-                    };
-                    if (UserValidation.Verify(login))
-                    {
-                        ViewBag.Message = "Your contact page.";
+            var login = UserValidation.GetLogin(Request);
 
-                        return View();
-                    }
-                }
-            return RedirectToAction("Login", "Account");
+            if (UserValidation.Verify(login))
+            {
+                ViewBag.Message = "Your contact page.";
 
+                return View();
+            }
+            return RedirectToAction("Login", "Home");
+        }
+
+        public ActionResult LogOut()
+        {
+            Thread.Sleep(5000);
+            return RedirectToAction("Index","Home");
+        }
+        public ActionResult Login()
+        {
+            ViewBag.Message = "Login.";
+
+            return View();
+        }
+        public ActionResult Register()
+        {
+            ViewBag.Message = "Register.";
+
+            return View();
         }
     }
 }
