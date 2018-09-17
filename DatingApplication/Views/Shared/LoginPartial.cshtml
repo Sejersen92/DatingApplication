@@ -1,9 +1,9 @@
-﻿@using DatingApplication.Controllers
+﻿@using DatingApplication.Models
 @if (UserValidation.GetLogin(Request) != null)
 {
     <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Manage", "Manage", "Login", routeValues: null, htmlAttributes: new { id = "ManageAccount" })</li>
-        <li onclick="DeleteCookie()">@Html.ActionLink("Log Out", "Logout", "Home", routeValues: null, htmlAttributes: new { id = "LogOut" })</li>
+        <li>@Html.ActionLink("Manage", "Manage", "Home", routeValues: null, htmlAttributes: new { id = "ManageAccount" })</li>
+        <li onclick="Logout()">Logout</li>
     </ul>
 }
 else
@@ -16,8 +16,18 @@ else
 
 
 <script>
-    function DeleteCookie() {
-        document.cookie = "username=; Expires=Thu, 18 Dec 2013 12:00:00 UTC; Path=/";
-        document.cookie = "password=; Expires=Thu, 18 Dec 2013 12:00:00 UTC; Path=/";
+    function Logout() {
+        deleteAllCookies();
+        document.location.href = "http://localhost:53221";
+    }
+    function deleteAllCookies() {
+        var cookies = document.cookie.split(";");
+
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i];
+            var eqPos = cookie.indexOf("=");
+            var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+            document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 UTC; Path=/";
+        }
     }
 </script>

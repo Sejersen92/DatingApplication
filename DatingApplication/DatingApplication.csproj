@@ -177,6 +177,7 @@
     <Compile Include="Models\EF\Message.cs" />
     <Compile Include="Models\EF\Profile.cs" />
     <Compile Include="Models\EF\User.cs" />
+    <Compile Include="Models\User\LoginRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -268,7 +269,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Account\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

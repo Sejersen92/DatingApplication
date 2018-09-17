@@ -50,12 +50,6 @@ namespace DatingApplication.Controllers
             }
             return RedirectToAction("Login", "Home");
         }
-
-        public ActionResult LogOut()
-        {
-            Thread.Sleep(5000);
-            return RedirectToAction("Index","Home");
-        }
         public ActionResult Login()
         {
             ViewBag.Message = "Login.";
