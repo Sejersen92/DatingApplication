@@ -10,7 +10,7 @@
     var profiles = context.Profiles.Where(x => x.User.ID == user).FirstOrDefault();
     <br />
     <div class="container-fluid">
-        <div class="d-flex" style="display:block">
+        <div class="d-flex">
             <div class="row mx-auto">
                 <div class="fb-profile">
                     <img style="width:15em; height:15em" class="rounded thumbnail" src="@profiles.Picture" alt="Profile image example" />
@@ -66,6 +66,9 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="card-title justify-content-center d-flex">
+            <h6>Chat with @context.Users.Where(z => z.ID == user).FirstOrDefault().Name!</h6>
         </div>
     </div>
 }
