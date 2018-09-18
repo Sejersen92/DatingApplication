@@ -41,6 +41,13 @@ namespace DatingApplication.Controllers
 
             return View();
         }
+        public ActionResult BrowseMatches()
+        {
+            ViewBag.Message = "View our selection of profiles here!";
+
+            return View();
+        }
+
         public new ActionResult Profile()
         {
             var login = UserValidation.GetLogin(Request);
