@@ -13,105 +13,105 @@
             <div class="container-fluid card box-shadow">
                 <div class="card-body">
                     <div>
-                        <form id="CreateProfile" name="CreateProfile">
-                            <h2>Create a new account on an existing customer</h2>
-                            <div class="form-row">
-                                <div class="form-inline col">
-                                    <div class="input-group col-sm-6">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text">URL.</span>
-                                        </div>
-                                        <input type="text" class="form-control" id="Picture" name="Picture" />
-                                    </div>
-                                    <div class="input-group col-sm-6 InputMargin">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text">Description.</span>
-                                        </div>
-                                        <input type="text" class="form-control" id="Description" name="Description" />
-                                    </div>
-                                </div>
-                            </div>
-                            <br />
-                            <div class="form-row">
-                                <div class="form-inline col">
-                                    <div class="input-group col-sm-4">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text">Weight.</span>
-                                        </div>
-                                        <input type="number" id="Weight" name="Weight" class="form-control">
-                                    </div>
-                                    <div class="input-group col-sm-4">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text">Height.</span>
-                                        </div>
-                                        <input type="number" id="Height" name="Height" class="form-control">
-                                    </div>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><label for="Male">Male:</label></span>
-                                            <div class="input-group-text">
-                                                <input type="radio" id="Male" name="Gender" class="form-check">
+                        @using (var context = new DatingContext())
+                        {
+                            var request = UserValidation.GetUser(UserValidation.GetLogin(Request));
+                            <form id="CreateProfile" name="CreateProfile">
+                                <h2>Setup your new profile</h2>
+                                <div class="form-row">
+                                    <div class="form-inline col">
+                                        <div class="input-group col-sm-6">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">URL.</span>
                                             </div>
+                                            <input type="text" class="form-control" id="Picture" name="Picture" />
                                         </div>
-
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><label for="Female">Female:</label></span>
-                                            <div class="input-group-text">
-                                                <input type="radio" id="Female" name="Gender" class="form-check">
+                                        <div class="input-group col-sm-6 InputMargin">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">Description.</span>
                                             </div>
+                                            <input type="text" class="form-control" id="Description" name="Description" />
                                         </div>
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="form-row">
+                                    <div class="form-inline col">
+                                        <div class="input-group col-sm-4">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">Weight.</span>
+                                            </div>
+                                            <input type="number" id="Weight" name="Weight" class="form-control">
+                                        </div>
+                                        <div class="input-group col-sm-4">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">Height.</span>
+                                            </div>
+                                            <input type="number" id="Height" name="Height" class="form-control">
+                                        </div>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><label for="Male">Male:</label></span>
+                                                <div class="input-group-text">
+                                                    <input type="radio" id="Male" name="Gender" class="form-check">
+                                                </div>
+                                            </div>
 
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><label for="Female">Female:</label></span>
+                                                <div class="input-group-text">
+                                                    <input type="radio" id="Female" name="Gender" class="form-check">
+                                                </div>
+                                            </div>
+
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <br />
-                            <div class="form-row">
-                                <div class="form-inline col">
-                                    <div class="input-group col-sm-4">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text">Body Type:</span>
+                                <br />
+                                <div class="form-row">
+                                    <div class="form-inline col">
+                                        <div class="input-group col-sm-4">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">Body Type:</span>
+                                            </div>
+                                            <input type="text" id="BodyType" name="BodyType" class="form-control" />
                                         </div>
-                                        <input type="text" id="BodyType" name="BodyType" class="form-control" />
-                                    </div>
-                                    <div class="input-group col-sm-4">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text">Hair color.</span>
+                                        <div class="input-group col-sm-4">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">Hair color.</span>
+                                            </div>
+                                            <input type="text" id="HairColor" name="HairColor" class="form-control" />
                                         </div>
-                                        <input type="text" id="HairColor" name="HairColor" class="form-control" />
-                                    </div>
-                                    <div class="input-group col-sm-4">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text">Eye color.</span>
+                                        <div class="input-group col-sm-4">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">Eye color.</span>
+                                            </div>
+                                            <input type="text" id="EyeColor" name="EyeColor" class="form-control" />
                                         </div>
-                                        <input type="text" id="EyeColor" name="EyeColor" class="form-control" />
-                                    </div>
-                                </div>
-                            </div>
-                            <br />
-                            <div class="form-row">
-                                <div class="form-inline col">
-                                    <div class="input-group col-sm-4">
-                                        @using (var context = new DatingContext())
-                                        {
-                                            var request = UserValidation.GetUser(UserValidation.GetLogin(Request));
+                                        <div class="input-group col-sm-4">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">Unique User ID:</span>
                                             </div>
-                                            <input type="number" disabled="disabled" id ="User_ID" name="User_ID" value="@request.ID" class="form-control" />
-                                        }
+                                            <input type="number" id="User_ID" name="User_ID" value="@request.ID" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div class="form-row">
+                                        <div class="form-inline col">
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <br />
-                            <div class="form-row">
-                                <div class="form-inline col">
-                                    <div class="input-group col-sm InputMargin">
-                                        <button type="submit" class="btn btn-primary" name="myBtn" value="hejmor">Execute</button>
-                                        <button style="color:black">@Html.ActionLink("Cancel", "Login", "Home")</button>
+                                <br />
+                                <div class="form-row">
+                                    <div class="form-inline col">
+                                        <div class="input-group col-sm InputMargin">
+                                            <button type="submit" class="btn btn-primary" name="myBtn" value="hejmor">Execute</button>
+                                            <button style="color:black">@Html.ActionLink("Cancel", "Login", "Home")</button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </form>
+                            </form>
+                        }
                     </div>
                 </div>
             </div>

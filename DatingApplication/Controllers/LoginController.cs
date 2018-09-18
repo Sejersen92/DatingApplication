@@ -1,9 +1,6 @@
 ﻿using DatingApplication.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 
@@ -28,21 +25,21 @@ namespace DatingApplication.Controllers
             }
         }
         [HttpPost]
-        public void CreateProfile([FromBody] ProtoProfile profile)
+        public void CreateProfile([FromBody]ProfileInputToDB profile)
         {
-            using(var ctx = new DatingContext())
-            {
+            using (var ctx = new DatingContext())
+            { 
                 Profile p = new Profile()
                 {
-                    BodyType = profile.BodyType,
                     Picture = profile.Picture,
                     Description = profile.Description,
                     Height = profile.Height,
-                    Weight = profile.Weight,
+                    Weight= profile.Weight,
                     Gender = profile.Gender,
+                    BodyType = profile.BodyType,
                     HairColor = profile.HairColor,
                     EyeColor = profile.EyeColor,
-                    User = ctx.Users.FirstOrDefault(x => x.ID == profile.User_ID)
+                    User = ctx.Users.FirstOrDefault(x=>x.ID == profile.User_ID)
                 };
                 ctx.Profiles.Add(p);
                 ctx.SaveChanges();

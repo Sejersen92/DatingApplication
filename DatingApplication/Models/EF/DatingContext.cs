@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
+﻿using System.Configuration;
 using System.Data.Entity;
-using System.Linq;
-using System.Web;
 
 namespace DatingApplication.Models
 {
     public class DatingContext : DbContext
     {
-        public DatingContext(): base()
+        public DatingContext(): base(ConfigurationManager.AppSettings["ConnectingString"])
         {
             Database.SetInitializer(new DropCreateDatabaseIfModelChanges<DatingContext>());
         }

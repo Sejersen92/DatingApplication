@@ -5,7 +5,7 @@ using System.Web;
 
 namespace DatingApplication.Models
 {
-    public class ProtoProfile
+    public class ProfileInputToDB
     {
         public int ID { get; set; }
         public string Picture { get; set; }
@@ -23,6 +23,5 @@ namespace DatingApplication.Models
         public int User_ID { get; set; }
 
         #endregion DatingStuff
-
     }
 }

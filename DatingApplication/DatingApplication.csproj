@@ -177,7 +177,7 @@
     <Compile Include="Models\EF\Message.cs" />
     <Compile Include="Models\EF\Profile.cs" />
     <Compile Include="Models\EF\User.cs" />
-    <Compile Include="Models\ProtoProfile.cs" />
+    <Compile Include="Models\ProfileInputToDB.cs" />
     <Compile Include="Models\User\LoginRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
