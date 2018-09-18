@@ -270,6 +270,7 @@
     <Content Include="Views\Home\ProfileInfo.cshtml" />
     <Content Include="Views\Home\BrowseMatches.cshtml" />
     <Content Include="Views\Home\LinkedProfile.cshtml" />
+    <Content Include="Views\Home\Inbox.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

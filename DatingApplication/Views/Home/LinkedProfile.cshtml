@@ -68,7 +68,11 @@
             </div>
         </div>
         <div class="card-title justify-content-center d-flex">
-            <h6>Chat with @context.Users.Where(z => z.ID == user).FirstOrDefault().Name!</h6>
+            <form id="MessageBox">
+                <h6>Send a message to @context.Users.Where(z => z.ID == user).FirstOrDefault().Name</h6>
+                <textarea type="text" id="Message" class="form-control"></textarea>
+                <button class="btn-outline-info rounded"><h6>Send message!</h6></button>
+            </form>
         </div>
     </div>
 }

@@ -67,6 +67,11 @@ namespace DatingApplication.Controllers
             return View(Id);
         }
 
+        public ActionResult Inbox()
+        {
+            return View();
+        }
+
         public ActionResult LogOut()
         {
             return RedirectToAction("Index","Home");
