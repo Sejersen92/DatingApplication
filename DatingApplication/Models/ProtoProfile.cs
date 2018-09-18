@@ -1,14 +1,11 @@
-﻿using DatingApplication.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
 namespace DatingApplication.Models
 {
-    public class Profile
+    public class ProtoProfile
     {
         public int ID { get; set; }
         public string Picture { get; set; }
@@ -23,6 +20,7 @@ namespace DatingApplication.Models
         public string BodyType { get; set; }
         public string HairColor { get; set; }
         public string EyeColor { get; set; }
+        public int User_ID { get; set; }
 
         #endregion DatingStuff
 

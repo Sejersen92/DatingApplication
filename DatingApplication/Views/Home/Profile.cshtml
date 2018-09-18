@@ -1,51 +1,78 @@
-﻿@{
+﻿@using DatingApplication.Models
+@{
     ViewBag.Title = "Profile";
 }
-<div class="col-lg-6 col-sm-6">
-    <div class="card hovercard">
-        <div class="card-background">
-            <img class="card-bkimg" alt="" src="">
-            <!-- http://lorempixel.com/850/280/people/9/ -->
-        </div>
-        <div class="useravatar">
-            <img alt="" src="~/Images/Mikkel.jpg">
-        </div>
-        <div class="card-info">
-            <span class="card-title">Mikkel</span>
-        </div>
-    </div>
-    <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
-        <div class="btn-group" role="group">
-            <button type="button" id="stars" class="btn btn-primary" href="#tab1" data-toggle="tab">
-                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                <div class="hidden-xs">Stars</div>
-            </button>
-        </div>
-        <div class="btn-group" role="group">
-            <button type="button" id="favorites" class="btn btn-default" href="#tab2" data-toggle="tab">
-                <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
-                <div class="hidden-xs">Favorites</div>
-            </button>
-        </div>
-        <div class="btn-group" role="group">
-            <button type="button" id="following" class="btn btn-default" href="#tab3" data-toggle="tab">
-                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                <div class="hidden-xs">Following</div>
-            </button>
-        </div>
-    </div>
-    <div class="well">
-        <div class="tab-content">
-            <div class="tab-pane fade in active" id="tab1">
-                <h3>This is tab 1</h3>
+@using (var context = new DatingContext())
+{
+    var user = UserValidation.GetUser(UserValidation.GetLogin(Request));
+    var profiles = context.Profiles.Where(x => x.User.ID == user.ID).FirstOrDefault();
+    if (profiles == null)
+    {
+        <h3>No profile found, please create a profile now.</h3>
+        <a class="btn btn-primary" href="~/Home/ProfileInfo" role="button">Create Profile.</a>
+    }
+    else
+    {
+        <br />
+        <div class="container-fluid">
+            <div class="d-flex" style="display:block">
+                <div class="row mx-auto">
+                    <div class="fb-profile">
+                        <img style="width:15em; height:15em" class="rounded thumbnail" src="@profiles.Picture" alt="Profile image example" />
+                        <div class="fb-profile-text">
+                            <h1>@context.Users.Where(x => x.ID == UserValidation.GetUser(UserValidation.GetLogin(Request)).ID).FirstOrDefault().Name</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-fluid">
+                    <div class="col-sm-8">
+                        <div data-spy="scroll" class="tabbable-panel">
+                            <div class="tabbable-line">
+                                <ul class="nav nav-tabs">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" href="#tab_default_1" data-toggle="tab">
+                                            About
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#tab_default_2" data-toggle="tab">
+                                            Description
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="tab_default_1">
+                                        <br />
+                                        <ul>
+                                            <li>Birthday: @context.Users.First().Birthday</li>
+                                            <li>Gender: @profiles.Gender</li>
+                                            <li>Height: @profiles.Height</li>
+                                            <li>Weight: @profiles.Weight</li>
+                                            <li>BodyType: @profiles.BodyType</li>
+                                            <li>Hair Color: @profiles.HairColor</li>
+                                            <li>Eye Color: @profiles.EyeColor</li>
+                                        </ul>
+                                    </div>
+                                    <div class="tab-pane" id="tab_default_2">
+                                        <br />
+                                        <h4>Who am I?</h4>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <p>
+                                                        @profiles.Description
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="tab-pane fade in" id="tab2">
-                <h3>This is tab 2</h3>
-            </div>
-            <div class="tab-pane fade in" id="tab3">
-                <h3>This is tab 3</h3>
-            </div>
         </div>
-    </div>
-</div>
+    }
+}
 

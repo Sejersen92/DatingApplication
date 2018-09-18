@@ -177,6 +177,7 @@
     <Compile Include="Models\EF\Message.cs" />
     <Compile Include="Models\EF\Profile.cs" />
     <Compile Include="Models\EF\User.cs" />
+    <Compile Include="Models\ProtoProfile.cs" />
     <Compile Include="Models\User\LoginRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -266,6 +267,7 @@
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\Register.cshtml" />
     <Content Include="Views\Shared\LoginPartial.cshtml" />
+    <Content Include="Views\Home\ProfileInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

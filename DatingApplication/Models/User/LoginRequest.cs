@@ -1,7 +1,10 @@
-﻿using System.Linq;
+﻿using DatingApplication.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web;
 
-namespace DatingApplication.Models
+namespace DatingApplication
 {
     public class LoginRequest
     {
@@ -9,22 +12,20 @@ namespace DatingApplication.Models
         public string Username { get; set; }
     }
 
-    public static class UserValidation
+    public class UserValidation
     {
         public static bool Verify(LoginRequest request)
         {
-
             if (request == null)
             {
                 return false;
             }
-            using (var ctx = new DatingContext())
+            var user = GetUser(request);
+            if (user == null)
             {
-                var user = ctx.Users.FirstOrDefault(x => x.LoginName == request.Username);
-                return user.PassCode == request.Password;
+                return false;
             }
-
-
+            return user.PassCode == request.Password;
         }
 
         public static LoginRequest GetLogin(HttpRequestBase request)
@@ -40,6 +41,14 @@ namespace DatingApplication.Models
                 };
             }
             return null;
+        }
+
+        public static User GetUser(LoginRequest request)
+        {
+            using (var ctx = new DatingContext())
+            {
+                return ctx.Users.FirstOrDefault(x => x.LoginName == request.Username);
+            }
         }
     }
 }
