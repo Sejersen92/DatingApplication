@@ -269,6 +269,7 @@
     <Content Include="Views\Shared\LoginPartial.cshtml" />
     <Content Include="Views\Home\ProfileInfo.cshtml" />
     <Content Include="Views\Home\BrowseMatches.cshtml" />
+    <Content Include="Views\Home\LinkedProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

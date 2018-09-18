@@ -3,7 +3,7 @@
     ViewBag.Title = "BrowseMatches";
 }
 
-<h2>Browse through our profile selection!</h2>
+<br />
 <div class="container-fluid">
     <div class="d-flex" style="display:block">
         <div class="row mx-auto">
@@ -14,10 +14,7 @@
                     <div class="card" style="width: 18rem; margin-right: 2em; margin-bottom: 2em">
                         <img class="card-img-top" style="max-height: 250px" src="@profile.Picture" alt="Card image cap">
                         <div class="card-body d-flex justify-content-center">
-                            <p>@profile.ID</p>
-                        </div>
-                        <div class="card-body d-flex justify-content-center">
-                            <a href="#" class="btn btn-primary">Visit Profile!</a>
+                            <button type="button" class="btn btn-info mt-4" >@Html.ActionLink("Visit Profile", "LinkedProfile", "Home", new { Id = profile.ID }, null)</button>
                         </div>
                     </div>
                 }

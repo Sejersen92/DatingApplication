@@ -1,0 +1,71 @@
+﻿@using DatingApplication.Models
+@{
+    ViewBag.Title = "LinkedProfile";
+
+}
+
+@using (var context = new DatingContext())
+{
+    var user = Convert.ToInt32(Request.Url.Segments.Last());
+    var profiles = context.Profiles.Where(x => x.User.ID == user).FirstOrDefault();
+    <br />
+    <div class="container-fluid">
+        <div class="d-flex" style="display:block">
+            <div class="row mx-auto">
+                <div class="fb-profile">
+                    <img style="width:15em; height:15em" class="rounded thumbnail" src="@profiles.Picture" alt="Profile image example" />
+                    <div class="fb-profile-text">
+                        <h1>@context.Users.Where(z => z.ID == user).FirstOrDefault().Name</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="col-sm-8">
+                    <div data-spy="scroll" class="tabbable-panel">
+                        <div class="tabbable-line">
+                            <ul class="nav nav-tabs">
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#tab_default_1" data-toggle="tab">
+                                        About
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#tab_default_2" data-toggle="tab">
+                                        Description
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="tab_default_1">
+                                    <br />
+                                    <ul>
+                                        <li>Birthday: @context.Users.First().Birthday</li>
+                                        <li>Gender: @profiles.Gender</li>
+                                        <li>Height: @profiles.Height</li>
+                                        <li>Weight: @profiles.Weight</li>
+                                        <li>BodyType: @profiles.BodyType</li>
+                                        <li>Hair Color: @profiles.HairColor</li>
+                                        <li>Eye Color: @profiles.EyeColor</li>
+                                    </ul>
+                                </div>
+                                <div class="tab-pane" id="tab_default_2">
+                                    <br />
+                                    <h4>Who am I?</h4>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <p>
+                                                    @profiles.Description
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

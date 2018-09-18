@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Threading;
 using System.Web.Mvc;
+using System.Web.Http;
 
 namespace DatingApplication.Controllers
 {
@@ -59,6 +60,11 @@ namespace DatingApplication.Controllers
                 return View();
             }
             return RedirectToAction("Login", "Home");
+        }
+
+        public ActionResult LinkedProfile([FromUri]int? Id)
+        {
+            return View(Id);
         }
 
         public ActionResult LogOut()
